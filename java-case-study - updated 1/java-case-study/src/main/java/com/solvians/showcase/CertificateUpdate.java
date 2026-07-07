@@ -13,7 +13,7 @@ public class CertificateUpdate {
 
     public CertificateUpdate() {
         this(System.currentTimeMillis(),
-                new ISINGenerator().generate(),
+                ISINGenerator.generate(),
                 randomPrice(),
                 randomSize(1_000, 5_000),
                 randomPrice(),

@@ -7,7 +7,7 @@ public class ISINGenerator {
     private static final String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String ALPHANUMERIC = LETTERS + "0123456789";
 
-    public String generate() {
+    public static String generate() {
         ThreadLocalRandom random = ThreadLocalRandom.current();
         StringBuilder isin = new StringBuilder(11);
         for (int i = 0; i < 2; i++) {

@@ -14,8 +14,7 @@ class ISINGeneratorTest {
 
     @Test
     public void generate_hasCorrectFormat() {
-        ISINGenerator generator = new ISINGenerator();
-        String isin = generator.generate();
+        String isin = ISINGenerator.generate();
 
         assertEquals(12, isin.length());
         assertTrue(isin.substring(0, 2).matches("[A-Z]{2}"));
@@ -25,8 +24,7 @@ class ISINGeneratorTest {
 
     @Test
     public void generate_hasValidCheckDigit() {
-        ISINGenerator generator = new ISINGenerator();
-        String isin = generator.generate();
+        String isin = ISINGenerator.generate();
 
         String body = isin.substring(0, 11);
         int checkDigit = Character.getNumericValue(isin.charAt(11));
