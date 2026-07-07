@@ -7,6 +7,12 @@ public class ISINGenerator {
     private static final String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String ALPHANUMERIC = LETTERS + "0123456789";
 
+    /**
+     * Generates a random ISIN: 2 uppercase letters, followed by 9 alphanumeric
+     * characters, followed by a check digit computed per {@link #calculateCheckDigit(String)}.
+     *
+     * @return a 12-character ISIN string
+     */
     public static String generate() {
         ThreadLocalRandom random = ThreadLocalRandom.current();
         StringBuilder isin = new StringBuilder(11);
@@ -20,6 +26,16 @@ public class ISINGenerator {
         return body + calculateCheckDigit(body);
     }
 
+    /**
+     * Computes the ISIN check digit for the given 11-character ISIN body (2 letters + 9
+     * alphanumeric characters): letters are converted to numbers (A=10 ... Z=35),
+     * every other digit is doubled starting from the rightmost
+     * digit, the resulting digits are summed, and the check digit is the amount needed to
+     * round that sum up to the next multiple of 10.
+     *
+     * @param isin the 11-character ISIN body (without the check digit)
+     * @return the check digit, 0-9
+     */
     public static int calculateCheckDigit(String isin) {
         StringBuilder numeric = new StringBuilder();
         for (char c : isin.toCharArray()) {
